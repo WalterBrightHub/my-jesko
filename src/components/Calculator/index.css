@@ -1,0 +1,10 @@
+.tip{
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #edd049;
+    padding: 10px;
+}
+
+.tip-text{
+    margin-top: 5px;
+}

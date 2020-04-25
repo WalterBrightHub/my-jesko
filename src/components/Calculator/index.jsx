@@ -450,7 +450,7 @@ const Calculator = () => {
         </List>
       ))
     }
-    <ResultBar process={getProcess(stage)} garbage={getGarbage(stage)} />
+    <ResultBar process={getProcess(stage)} garbage={getGarbage(stage)} p2w={stage['Jesko']>13} />
   </div>
 }
 

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import './index.css'
 
-const ResultBar = ({ process, garbage }) => {
+const ResultBar = ({ process, garbage, p2w }) => {
   const [showReport, setShowReport] = useState(false)
   const toggleOpen = (e) => {
     setShowReport(!showReport)
@@ -18,8 +18,8 @@ const ResultBar = ({ process, garbage }) => {
             <div className='report-block'>
               <div className="report-item">
                 {
-                  garbage.map(({ car, label ,perfect}) => (
-                    <div className='car-block' style={{backgroundColor:perfect?'#acf2bd':'#fdb8c0'}} key={car}>
+                  garbage.map(({ car, label, perfect }) => (
+                    <div className='car-block' style={{ backgroundColor: perfect ? '#acf2bd' : '#fdb8c0' }} key={car}>
                       <div className="car-name">{car}</div>
                       <div className="label">{label}</div>
                     </div>
@@ -34,9 +34,11 @@ const ResultBar = ({ process, garbage }) => {
                   : <div className="report-item"><span className="strong">很遗憾</span> 你没有进入九王</div>
               }
               {
-                process.sp >= 580000
-                  ? <div className="report-item">恭喜你获得足够的 SP 获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
-                  : <div className="report-item">你没有足够的 SP 获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span> <span className='warn'>您不配拿</span></div>
+                p2w
+                  ? <div className="report-item">恭喜你使用了钞能力获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
+                  : process.sp >= 580000
+                    ? <div className="report-item">恭喜你获得足够的 SP 获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
+                    : <div className="report-item">你没有足够的 SP 获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span> <span className='warn'>您不配拿</span></div>
               }
               {
                 process.sp >= 623000

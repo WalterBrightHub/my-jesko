@@ -26,25 +26,50 @@ const ResultBar = ({ process, garbage, p2w }) => {
                   ))
                 }
               </div>
-              <div className="report-item">经过你的努力</div>
-              <div className="report-item">你最高可以获得 <span className='strong'>{process.sp}</span> SP</div>
+              <div className="report-item">使用蓝币跳关后：</div>
+              <div className="report-item" style={{ display: 'flex' }}>
+                <div className="sp-list">
+                  {
+                    [18, 19, 20, 21, 22].map(item =>
+                      process[item]
+                        ? <div className='sp-list-item'>
+
+                          九王 {item - 17} 解锁后累计 SP <span className='strong'>{process[item]}</span>
+                        </div>
+                        : <div  className='sp-list-item'>
+
+                          九王 {item - 17} <span className='strong'>未能解锁</span>
+                        </div>
+                    )
+                  }
+                </div>
+                <div className="qr-block">
+                  <div className="qr-tip">分享本页二维码</div>
+                  <img src="https://wx2.sbimg.cn/2020/04/25/5ea3cc13cd651C7br0CUcMwJ9h8zs.png" alt="qr code" className="qr-code"/>
+                </div>
+              </div>
+
+              {/* <div className="report-item">你最高可以获得 <span className='strong'>{process.sp}</span> SP</div>
               {
                 process.stage > 17
                   ? <div className="report-item">你最高可以进入<span className='strong'>九王{process.stage - 17}</span></div>
                   : <div className="report-item"><span className="strong">很遗憾</span> 你没有进入九王</div>
-              }
-              {
-                p2w
-                  ? <div className="report-item">恭喜你使用了钞能力获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
-                  : process.sp >= 580000
-                    ? <div className="report-item">恭喜你获得足够的 SP 获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
-                    : <div className="report-item">你没有足够的 SP 获取 Jesko 钥匙 <span role='img' aria-label='key'>🔑</span> <span className='warn'>您不配拿</span></div>
-              }
-              {
-                process.sp >= 623000
-                  ? <div className="report-item">恭喜你获得足够的 SP 获取 Jesko 贴纸 <span role='img' aria-label='skin'>🍉</span> <span className='unlock'>已可解锁</span></div>
-                  : <div className="report-item">你没有足够的 SP 获取 Jesko 贴纸 <span role='img' aria-label='skin'>🍉</span> <span className='warn'>您不配拿</span></div>
-              }
+              } */}
+              <div className="report-item key-block">
+                {
+                  p2w
+                    ? <div className="key-item">Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
+                    : process.sp >= 580000
+                      ? <div className="key-item">Jesko 钥匙 <span role='img' aria-label='key'>🔑</span>  <span className='unlock'>已可解锁</span></div>
+                      : <div className="key-item">Jesko 钥匙 <span role='img' aria-label='key'>🔑</span> <span className='warn'>宁不配拿</span></div>
+                }
+                {
+                  process.sp >= 623000
+                    ? <div className="key-item">Jesko 贴纸 <span role='img' aria-label='skin'>🍉</span> <span className='unlock'>已可解锁</span></div>
+                    : <div className="key-item">Jesko 贴纸 <span role='img' aria-label='skin'>🍉</span> <span className='warn'>宁不配拿</span></div>
+                }
+              </div>
+
             </div>
           </div>
           : <div></div>

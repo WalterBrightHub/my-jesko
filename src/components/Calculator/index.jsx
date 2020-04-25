@@ -94,6 +94,7 @@ const spCanGet = {
 const getProcess = stage => {
   let cars = Object.keys(noSkip)
   let sp = spCanGet[17]
+  let sps={}
   //console.log(`stage 17 sp=>${sp}`)
   for (let i = 11; i <= 17; i++) {
     for (let car of cars) {
@@ -104,8 +105,10 @@ const getProcess = stage => {
       }
     }
   }
+  sps[17]=sp
   if (sp < spToLock[18]) {
     return {
+      ...sps,
       sp,
       stage: 17
     }
@@ -139,9 +142,11 @@ const getProcess = stage => {
       // //console.log(sp)
     }
 
+    sps[i]=sp
     //不足以解锁下一关
     if (sp < spToLock[i + 1]) {
       return {
+        ...sps,
         sp,
         stage: i
       }
@@ -149,6 +154,7 @@ const getProcess = stage => {
   }
 
   return {
+    ...sps,
     sp,
     stage: 22
   }
@@ -410,6 +416,7 @@ const getGarbage = (stage) => {
 
 const Calculator = () => {
   const [stage, setStage] = useState(initStage)
+  // const [sps,setSps]=useState({})
   // const [data,setData]=useState(initData)
 
   useEffect(() => {

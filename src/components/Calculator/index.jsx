@@ -234,8 +234,12 @@ const stages = {
       label: '★★★'
     },
     {
+      value: 18,
+      label: '★★★★ 金卡不足4'
+    },
+    {
       value: 20,
-      label: '★★★★ 金卡不足7'
+      label: '★★★★ 金卡*4'
     },
     {
       value: 22,
